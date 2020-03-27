@@ -4,15 +4,20 @@ import { AppRoutingModule } from '../app-routing.module';
 import { authRoute } from './routes/routes';
 import { AuthComponent } from './auth.component';
 import { RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './component/login/login.component';
+import { RegisterComponent } from './component/register/register.component';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from './_services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(authRoute)
+    RouterModule.forRoot(authRoute),
+    FormsModule,
+    HttpClientModule
   ],
-  declarations: [AuthComponent , LoginComponent , RegisterComponent]
+  declarations: [AuthComponent , LoginComponent , RegisterComponent] , providers: [AuthService] ,
 })
 export class AuthModule { }
