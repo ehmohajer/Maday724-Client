@@ -19,7 +19,7 @@ login() {
   this.authService.login(this.model).subscribe(next => {
     this.router.navigate(['/panel']);
   }, error => {
-    console.log('Log Failed');
+    console.log(error);
   });
 }
 }

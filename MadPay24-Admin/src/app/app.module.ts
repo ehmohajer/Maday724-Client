@@ -7,6 +7,7 @@ import { PanelModule } from './panel/panel.module';
 import { RouterModule } from '@angular/router';
 import { adminRoute } from './routes/routes';
 import { AuthModule } from './auth/auth.module';
+import { ErrorInterceptorProvider } from './Services/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { AuthModule } from './auth/auth.module';
     PanelModule,
     RouterModule.forRoot(adminRoute)
   ],
-  providers: [],
+  providers: [ErrorInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
