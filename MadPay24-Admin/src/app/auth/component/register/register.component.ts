@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
 import { error } from '@angular/compiler/src/util';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -9,15 +10,16 @@ import { error } from '@angular/compiler/src/util';
 })
 export class RegisterComponent implements OnInit {
 model: any = {};
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private alertService: ToastrService) { }
 
   ngOnInit() {
   }
 register() {
   this.authService.register(this.model).subscribe(() => {
+    this.alertService.success('با موفقیت وارد شدید', 'ورود');
     console.log('Success Register');
   }, error => {
-    console.log(error);
+    this.alertService.error(error, 'خطا');
   });
 }
 

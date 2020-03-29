@@ -16,7 +16,6 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     RouterModule.forRoot(authRoute),
     FormsModule,
-    HttpClientModule
   ],
   declarations: [AuthComponent , LoginComponent , RegisterComponent] , providers: [AuthService] ,
 })
