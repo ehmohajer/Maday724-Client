@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -10,15 +10,18 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
   model: any = {};
-  constructor(private authService: AuthService, private router: Router, private alertService: ToastrService) { }
+  retuenUrl = '';
+  constructor(private authService: AuthService, private router: Router,
+              private alertService: ToastrService, private routh: ActivatedRoute) { }
 
   ngOnInit() {
+    this.routh.queryParams.subscribe(params => this.retuenUrl = params.return || '/panel');
   }
 
 
 login() {
   this.authService.login(this.model).subscribe(next => {
-    this.router.navigate(['/panel']);
+    this.router.navigate([this.retuenUrl]);
     this.alertService.success('با موفقیت وارد شدید', 'ورود');
   }, error => {
     this.alertService.error(error, 'خطا');

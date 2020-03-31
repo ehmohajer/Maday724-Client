@@ -3,16 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PanelModule } from './panel/panel.module';
-import { RouterModule } from '@angular/router';
-import { adminRoute } from './routes/routes';
-import { AuthModule } from './auth/auth.module';
 import { ErrorInterceptorProvider } from './Services/error.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxUiLoaderModule, NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION,
+import { NgxUiLoaderModule, NgxUiLoaderConfig,
   NgxUiLoaderHttpModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
+import { AuthGuard } from './guard/auth.guard';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: 'red',
@@ -50,9 +47,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthModule,
-    PanelModule,
-    RouterModule.forRoot(adminRoute),
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 10000,
@@ -66,7 +60,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderHttpModule,
     NgxUiLoaderRouterModule,
   ],
-  providers: [ErrorInterceptorProvider],
+  providers: [ErrorInterceptorProvider, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

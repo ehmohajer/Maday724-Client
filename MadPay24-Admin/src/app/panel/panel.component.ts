@@ -15,8 +15,8 @@ export class PanelComponent implements OnInit {
   constructor(private router: Router, private alertService: ToastrService, public authService: AuthService) { }
 
   ngOnInit() {
-    this.loadChart();
     this.getDecodedToken();
+    this.loadChart();
   }
 
   getDecodedToken() {
@@ -33,9 +33,6 @@ export class PanelComponent implements OnInit {
     this.alertService.warning('با موفقیت خارج شدید', 'خروج');
   }
 
-  loggdin() {
-    return this.authService.logged();
-  }
 
   loadChart() {
 // Widget Area Chart 1 Starts
@@ -695,5 +692,9 @@ donut.on('draw', function (data) {
   }
 });
 
+}
+
+loggdin() {
+  return this.authService.logged();
 }
 }
