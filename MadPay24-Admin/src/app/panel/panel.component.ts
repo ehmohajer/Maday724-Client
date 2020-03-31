@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import Chartist from '../../assets/vendors/js/chartist.min.js';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../auth/_services/auth.service.js';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-panel',
@@ -9,17 +11,32 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./panel.component.css']
 })
 export class PanelComponent implements OnInit {
-
-  constructor(private router: Router, private alertService: ToastrService) { }
+  JwtHelper = new JwtHelperService();
+  constructor(private router: Router, private alertService: ToastrService, public authService: AuthService) { }
 
   ngOnInit() {
     this.loadChart();
+    this.getDecodedToken();
   }
+
+  getDecodedToken() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.authService.decodedToken = this.JwtHelper.decodeToken(token);
+
+    }
+  }
+
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/auth/login']);
     this.alertService.warning('با موفقیت خارج شدید', 'خروج');
   }
+
+  loggdin() {
+    return this.authService.logged();
+  }
+
   loadChart() {
 // Widget Area Chart 1 Starts
 var widgetlineChart = new Chartist.Line(
