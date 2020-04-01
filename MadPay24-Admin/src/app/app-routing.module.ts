@@ -7,15 +7,15 @@ const routes: Routes = [
   { path: 'auth', redirectTo: '/auth/login', pathMatch: 'full' },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./component/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'panel',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule)
+    loadChildren: () => import('./component/panel/panel.module').then(m => m.PanelModule)
   },
 
-  { path: 'panel', redirectTo: '/panel', pathMatch: 'full' },
+  { path: 'panel', redirectTo: '/panel/dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: '/auth/login', pathMatch: 'full' }
 ];
 

@@ -15,7 +15,10 @@ export class LoginComponent implements OnInit {
               private alertService: ToastrService, private routh: ActivatedRoute) { }
 
   ngOnInit() {
-    this.routh.queryParams.subscribe(params => this.retuenUrl = params.return || '/panel');
+    this.routh.queryParams.subscribe(params => this.retuenUrl = params.return || '/panel/dashboard');
+    if (this.loggedin()) {
+    this.router.navigate([this.retuenUrl]);
+    }
   }
 
 
@@ -27,4 +30,9 @@ login() {
     this.alertService.error(error, 'خطا');
   });
 }
+
+loggedin() {
+  return this.authService.logged();
+}
+
 }

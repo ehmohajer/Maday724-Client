@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
-import { error } from '@angular/compiler/src/util';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -18,6 +17,7 @@ register() {
   this.authService.register(this.model).subscribe(() => {
     this.alertService.success('با موفقیت وارد شدید', 'ورود');
     console.log('Success Register');
+  // tslint:disable-next-line:no-shadowed-variable
   }, error => {
     this.alertService.error(error, 'خطا');
   });
