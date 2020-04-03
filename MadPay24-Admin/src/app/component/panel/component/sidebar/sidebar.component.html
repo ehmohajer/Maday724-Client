@@ -12,20 +12,26 @@
             <li class=" nav-item"  routerLinkActive="active">
                 <a [routerLink]="[ '/panel/dashboard' ]"><i class="icon-home"></i><span data-i18n="" class="menu-title">پروفایل کاربری</span></a>
             </li>  
-            <li class="has-sub nav-item" href="javascript">
-                  <a ><i class="icon-home"></i><span data-i18n="" class="menu-title">داشبورد</span></a>
+            <li class="has-sub nav-item">
+                  <a ><i class="icon-eye"></i><span data-i18n="" class="menu-title">اطلاعات کاربر</span></a>
                     <!-- <span class="tag badge badge-pill badge-danger mt-1">2</span> -->
                   <ul class="menu-content">
                       <li routerLinkActive="active">
-                          <a [routerLink]="['/panel/chat']" class="menu-item">تجارت الکترونیک</a>
+                          <a [routerLink]="['/panel/userinfo/profile']" class="menu-item">
+                            <i class="icon-user-following"></i>
+                            پروفایل
+                        </a>
                       </li>
                       <li routerLinkActive="active">
-                          <a [routerLink]="['/panel/graph']" class="menu-item">تجزیه و تحلیل</a>
+                          <a [routerLink]="['/panel/userinfo/documents']" class="menu-item">
+                            <i class="icon-docs"></i>
+                            ارسال مدارک
+                        </a>
                       </li>
                   </ul>
               </li>
               <li class=" nav-item" routerLinkActive="active">
-                <a [routerLink]="[ '/panel/profile' ]" ><i class="icon-user-following"></i><span data-i18n="" class="menu-title">پروفایل</span></a>
+                <a [routerLink]="[ '/panel/c' ]" ><i class="icon-user-following"></i><span data-i18n="" class="menu-title">ارسال مدارک</span></a>
             </li>
            
           </ul>
